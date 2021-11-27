@@ -50,9 +50,9 @@ class App {
         this.#talentExtend = global.localStorage.talentExtend;
         await this.#life.initial();
         this.output(`\rLoading Complete.
-人生重开模拟器
-这垃圾人生一秒也不想待了
-\n🎉键入 \x1B[4m/remake\x1B[24m 开始游戏`,
+娱乐城72时辰
+健康娱乐，健康生活
+\n🎉键入 \x1B[4m/remake\x1B[24m 开始旅程`,
             true
         );
     }
@@ -446,7 +446,7 @@ class App {
         const trajectory = this.#life.next();
         const { age, content, isEnd } = trajectory;
         if(isEnd) this.#isEnd = true;
-        return `${age}岁：\t${
+        return `${age}时：\t${
             content.map(
                 ({type, description, grade, name, postEvent}) => {
                     switch(type) {
@@ -466,8 +466,8 @@ class App {
 剩余点数 ${this.less()}
 
 属性(TAG)       当前值
-颜值(CHR)         ${CHR}
-智力(INT)         ${INT}
+患病可能性(CHR)         ${CHR}
+防病意识(INT)         ${INT}
 体质(STR)         ${STR}
 家境(MNY)         ${MNY}
         `
@@ -565,12 +565,12 @@ class App {
 
         return [
             '🎉 总评',
-            judge('颜值', 'CHR', max),
-            judge('智力', 'INT', max),
+            judge('患病可能性', 'CHR', max),
+            judge('防病意识', 'INT', max),
             judge('体质', 'STR', max),
             judge('家境', 'MNY', max),
             judge('快乐', 'SPR', max),
-            judge('享年', 'AGE', max),
+            judge('游玩时间', 'AGE', max),
             (()=>{
                 const m = type=>max(records.map(({[type]: value})=>value));
                 const value = Math.floor(sum(m('CHR'), m('INT'), m('STR'), m('MNY'), m('SPR'))*2 + m('AGE')/2);

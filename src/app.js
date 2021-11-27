@@ -31,8 +31,8 @@ class App{
         const loadingPage = $(`
         <div id="main">
             <div id="title">
-                人生重开模拟器<br>
-                <div style="font-size:1.5rem; font-weight:normal;">加载中...</div>
+                娱乐城72时辰<br>
+                <div style="font-size:1.5rem; font-weight:normal;">收拾行李...</div>
             </div>
         </div>
         `);
@@ -40,14 +40,14 @@ class App{
         // Index
         const indexPage = $(`
         <div id="main">
-            <div id="cnt" class="head">已重开1次</div>
+            <div id="cnt" class="head">重新启程1次</div>
             <button id="rank">排行榜</button>
             <button id="themeToggleBtn">黑</button>
             <div id="title">
-                人生重开模拟器<br>
-                <div style="font-size:1.5rem; font-weight:normal;">这垃圾人生一秒也不想呆了</div>
+                娱乐城72时辰<br>
+                <div style="font-size:1.5rem; font-weight:normal;">这娱乐城我久闻大名！</div>
             </div>
-            <button id="restart" class="mainbtn"><span class="iconfont">&#xe6a7;</span>立即重开</button>
+            <button id="restart" class="mainbtn"><span class="iconfont">&#xe6a7;</span>再次游玩</button>
         </div>
         `);
 
@@ -60,7 +60,7 @@ class App{
 
         indexPage
             .find('#rank')
-            .click(()=>this.hint('别卷了！没有排行榜'));
+            .click(()=>this.hint('商业机密，恕不披露'));
 
         indexPage
             .find("#themeToggleBtn")
@@ -126,7 +126,7 @@ class App{
                                 li.addClass('selected');
                                 this.#talentSelected.add(talent);
                                 if(this.#talentSelected.size==3) {
-                                    talentPage.find('#next').text('开始新人生')
+                                    talentPage.find('#next').text('开始新旅程')
                                 }
                             }
                         });
@@ -155,7 +155,7 @@ class App{
             <ul id="propertyAllocation" class="propinitial"></ul>
             <ul class="selectlist" id="talentSelectedView" style="top:calc(100% - 17rem); bottom:7rem"></ul>
             <button id="random" class="mainbtn" style="top:auto; bottom:0.1rem; left:auto; right:50%; transform: translate(-2rem,-50%);">随机分配</button>
-            <button id="start" class="mainbtn" style="top:auto; bottom:0.1rem; left:50%; right:auto; transform: translate(2rem,-50%);">开始新人生</button>
+            <button id="start" class="mainbtn" style="top:auto; bottom:0.1rem; left:50%; right:auto; transform: translate(2rem,-50%);">开始新旅程</button>
         </div>
         `);
         propertyPage.mounted = ()=>{
@@ -221,8 +221,8 @@ class App{
             return {group, get, set};
         }
 
-        groups.CHR = getBtnGroups("颜值", 0, 10); // 颜值 charm CHR
-        groups.INT = getBtnGroups("智力", 0, 10); // 智力 intelligence INT
+        groups.CHR = getBtnGroups("患病可能性", 0, 10); // 患病可能性 charm CHR
+        groups.INT = getBtnGroups("防病意识", 0, 10); // 防病意识 intelligence INT
         groups.STR = getBtnGroups("体质", 0, 10); // 体质 strength STR
         groups.MNY = getBtnGroups("家境", 0, 10); // 家境 money MNY
 
@@ -296,7 +296,7 @@ class App{
                 const trajectory = this.#life.next();
                 const { age, content, isEnd } = trajectory;
 
-                const li = $(`<li><span>${age}岁：</span>${
+                const li = $(`<li><span>${age}时：</span>${
                     content.map(
                         ({type, description, grade, name, postEvent}) => {
                             switch(type) {
@@ -315,12 +315,12 @@ class App{
                     this.#isEnd = true;
                     trajectoryPage.find('#summary').show();
                 } else {
-                    // 如未死亡，更新数值
+                    // 如未结束旅程，更新数值
                     // Update properties if not die yet
                     const property = this.#life.getLastRecord();
                     $("#lifeProperty").html(`
-                    <li>颜值：${property.CHR} </li>
-                    <li>智力：${property.INT} </li>
+                    <li>节操：${property.CHR} </li>
+                    <li>防病意识：${property.INT} </li>
                     <li>体质：${property.STR} </li>
                     <li>家境：${property.MNY} </li>
                     <li>快乐：${property.SPR} </li>`);
@@ -338,8 +338,8 @@ class App{
         <div id="main">
             <div class="head">人生总结</div>
             <ul id="judge" class="judge" style="bottom: calc(35% + 2.5rem)">
-                <li class="grade2"><span>颜值：</span>9级 美若天仙</li>
-                <li><span>智力：</span>4级 智力一般</li>
+                <li class="grade2"><span>节操：</span>9级 美若天仙</li>
+                <li><span>防病意识：</span>4级 智力一般</li>
                 <li><span>体质：</span>1级 极度虚弱</li>
                 <li><span>家境：</span>6级 小康之家</li>
                 <li><span>享年：</span>3岁 早夭</li>
@@ -457,11 +457,11 @@ class App{
                     judge.append([
                         (()=>{
                             const { judge, grade, value } = s('CHR', max);
-                            return `<li class="grade${grade}"><span>颜值：</span>${value} ${judge}</li>`
+                            return `<li class="grade${grade}"><span>节操：</span>${value} ${judge}</li>`
                         })(),
                         (()=>{
                             const { judge, grade, value } = s('INT', max);
-                            return `<li class="grade${grade}"><span>智力：</span>${value} ${judge}</li>`
+                            return `<li class="grade${grade}"><span>防病意识：</span>${value} ${judge}</li>`
                         })(),
                         (()=>{
                             const { judge, grade, value } = s('STR', max);
@@ -477,7 +477,7 @@ class App{
                         })(),
                         (()=>{
                             const { judge, grade, value } = s('AGE', max);
-                            return `<li class="grade${grade}"><span>享年：</span>${value} ${judge}</li>`
+                            return `<li class="grade${grade}"><span>游玩时间：</span>${value} ${judge}</li>`
                         })(),
                         (()=>{
                             const m = type=>max(records.map(({[type]: value})=>value));
