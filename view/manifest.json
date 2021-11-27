@@ -41,11 +41,11 @@
       "type": "image/png"
     }
   ],
-  "name": "人生重开模拟器",
+  "name": "娱乐城72时辰",
   "short_name": "LifeRestart",
   "orientation": "portrait",
   "display": "standalone",
   "start_url": "/view/index.html",
-  "description": "人生重开模拟器",
+  "description": "娱乐城72时辰",
   "background_color": "#ffffff"
 }
